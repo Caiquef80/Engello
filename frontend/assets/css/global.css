@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300&display=swap');
+
+:root {
+  --font-body: Inter, Arial, sans-serif;
+  --font-display: Fraunces, Georgia, serif;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; min-height: 100%; }
+body { font-family: var(--font-body); background: #f0f1f4; color: #1a1d23; }
+button, input, textarea { font: inherit; }
+button { border: 0; }
+a { color: inherit; text-decoration: none; }
+.hidden { display: none !important; }
+
+.custom-scroll { scrollbar-width: thin; scrollbar-color: var(--border) transparent; }
+.custom-scroll::-webkit-scrollbar { width: 5px; height: 5px; }
+.custom-scroll::-webkit-scrollbar-track { background: transparent; }
+.custom-scroll::-webkit-scrollbar-thumb { background: var(--border); border-radius: 5px; }
+
+[data-theme="light"] {
+  --page-bg: #f0f1f4;
+  --surface: #fff;
+  --surface-hover: #f9fafb;
+  --surface-input: #fafbfc;
+  --border: #e8eaf0;
+  --border-subtle: #f0f1f4;
+  --border-focus: #4f46e5;
+  --text-primary: #1a1d23;
+  --text-secondary: #4b5563;
+  --text-muted: #9ca3af;
+  --text-disabled: #d1d5db;
+  --brand-solid: #4f46e5;
+  --brand-text: #7c3aed;
+  --brand-muted: #ede9fe;
+  --success-bg: #f0fdf4;
+  --success-text: #10b981;
+  --success-border: #d1fae5;
+  --error-bg: #fef2f2;
+  --error-text: #dc2626;
+  --error-border: #fecaca;
+  --shadow-card: 0 1px 3px rgba(0,0,0,.05);
+  --shadow-hover: 0 4px 12px rgba(0,0,0,.10);
+  --shadow-modal: 0 20px 60px rgba(0,0,0,.15);
+}
+
+[data-theme="dark"] {
+  --page-bg: #0d0f18;
+  --surface: #161929;
+  --surface-hover: #1e2236;
+  --surface-input: #1a1d2e;
+  --border: #252840;
+  --border-subtle: #1e2236;
+  --border-focus: #7c6af7;
+  --text-primary: #e8eaf8;
+  --text-secondary: #9094b8;
+  --text-muted: #555a7a;
+  --text-disabled: #333654;
+  --brand-solid: #5b52f0;
+  --brand-text: #a78bfa;
+  --brand-muted: #1e1b4b;
+  --success-bg: #0a2e1f;
+  --success-text: #34d399;
+  --success-border: #064e3b;
+  --error-bg: #2d0f0f;
+  --error-text: #f87171;
+  --error-border: #7f1d1d;
+  --shadow-card: 0 1px 4px rgba(0,0,0,.4);
+  --shadow-hover: 0 6px 20px rgba(0,0,0,.5);
+  --shadow-modal: 0 24px 80px rgba(0,0,0,.7);
+}
