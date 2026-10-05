@@ -1,2 +1,4 @@
 .env
-/vendor/
+.env.*
+!.env.example
+/vendor/git add .gitignore
