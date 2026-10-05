@@ -11,46 +11,33 @@ class Database
 {
     private static ?PDO $connection = null;
 
-    private function __construct()
-    {
-    }
-
     public static function getConnection(): PDO
     {
-        if (self::$connection === null) {
-            self::$connection = self::createConnection();
+        if (self::$connection !== null) {
+            return self::$connection;
         }
 
-        return self::$connection;
-    }
+        $envPath = dirname(__DIR__, 2) . '/.env';
 
-    private static function createConnection(): PDO
-    {
-        $connectionString = getenv('DATABASE_URL');
-
-        if (!$connectionString) {
-            throw new PDOException('A variável DATABASE_URL não foi configurada.');
+        if (!file_exists($envPath)) {
+            throw new PDOException('.env não encontrado.');
         }
 
-        $parts = parse_url($connectionString);
+        $env = parse_ini_file($envPath);
 
-        if ($parts === false) {
-            throw new PDOException('DATABASE_URL inválida.');
+        if ($env === false) {
+            throw new PDOException('Não foi possível carregar o .env.');
         }
 
-        $host = $parts['host'] ?? '';
-        $port = $parts['port'] ?? 5432;
-        $database = isset($parts['path']) ? ltrim($parts['path'], '/') : '';
-        $username = $parts['user'] ?? '';
-        $password = $parts['pass'] ?? '';
+        $host = $env['DB_HOST'];
+        $port = $env['DB_PORT'] ?? '5432';
+        $database = $env['DB_NAME'];
+        $username = $env['DB_USER'];
+        $password = $env['DB_PASSWORD'];
 
-        if ($host === '' || $database === '' || $username === '') {
-            throw new PDOException('DATABASE_URL não contém os dados necessários.');
-        }
+        $dsn = "pgsql:host={$host};port={$port};dbname={$database};sslmode=require";
 
-        $dsn = "pgsql:host={$host};port={$port};dbname={$database}";
-
-        return new PDO(
+        self::$connection = new PDO(
             $dsn,
             $username,
             $password,
@@ -60,5 +47,7 @@ class Database
                 PDO::ATTR_EMULATE_PREPARES => false
             ]
         );
+
+        return self::$connection;
     }
 }
