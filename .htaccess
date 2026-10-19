@@ -1,0 +1,20 @@
+# ========================================================
+# ENGELLO - CONFIGURAÇÃO APACHE / INFINITYFREE
+# ========================================================
+
+# Desabilitar listagem de diretórios
+Options -Indexes
+
+# Configurar Charset padrão para UTF-8
+AddDefaultCharset UTF-8
+
+# Bloquear acesso a arquivos confidenciais
+<FilesMatch "^\.|\.sql$|composer\.(json|lock)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Ativar RewriteEngine caso seja suportado
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+</IfModule>
