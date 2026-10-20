@@ -111,7 +111,9 @@ class AutenticacaoService {
             );
         }
         session_destroy();
-        return ['sucesso' => true, 'mensagem' => 'Sessão encerrada com sucesso.'];
+        header("Location: /Engello/frontend/login.php");
+        exit;
+       
     }
 
     public function obterUsuarioAtual() {
